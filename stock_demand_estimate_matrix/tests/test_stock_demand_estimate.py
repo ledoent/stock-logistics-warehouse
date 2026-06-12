@@ -14,6 +14,7 @@ class TestStockDemandEstimate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.res_users_model = cls.env["res.users"]
         cls.product_model = cls.env["product.product"]
         cls.stock_location_model = cls.env["stock.location"]
@@ -70,7 +71,7 @@ class TestStockDemandEstimate(TransactionCase):
                 "email": "example@yourcompany.com",
                 "company_id": company.id,
                 "company_ids": [(4, company.id)],
-                "groups_id": [(6, 0, group_ids)],
+                "group_ids": [(6, 0, group_ids)],
             }
         )
         return user

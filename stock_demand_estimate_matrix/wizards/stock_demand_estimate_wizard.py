@@ -1,7 +1,7 @@
 # Copyright 2019 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 
@@ -49,7 +49,7 @@ class DemandEstimateWizard(models.TransientModel):
         self.ensure_one()
         if self.date_start > self.date_end:
             raise ValidationError(
-                _("The start date cannot be later than the end date.")
+                self.env._("The start date cannot be later than the end date.")
             )
 
     def _prepare_demand_estimate_sheet(self):
@@ -64,7 +64,7 @@ class DemandEstimateWizard(models.TransientModel):
     def create_sheet(self):
         self.ensure_one()
         if not self.product_ids:
-            raise UserError(_("You must select at least one product."))
+            raise UserError(self.env._("You must select at least one product."))
 
         # 2d matrix widget need real records to work
         sheet = self.env["stock.demand.estimate.sheet"].create(
@@ -79,7 +79,7 @@ class DemandEstimateWizard(models.TransientModel):
         sheet._onchange_dates()
 
         res = {
-            "name": _("Estimate Sheet"),
+            "name": self.env._("Estimate Sheet"),
             "src_model": "stock.demand.estimate.wizard",
             "view_type": "form",
             "view_mode": "form",
