@@ -14,16 +14,22 @@ class TestStockLocationChildren(BaseCommon):
                 "usage": "internal",
             }
         )
+        cls.product_1 = cls.env["product.product"].create(
+            {"name": "Test Product 1", "is_storable": True}
+        )
+        cls.product_2 = cls.env["product.product"].create(
+            {"name": "Test Product 2", "is_storable": True}
+        )
         cls.stock_quant1 = cls.env["stock.quant"].create(
             {
-                "product_id": cls.env.ref("product.product_delivery_01").id,
+                "product_id": cls.product_1.id,
                 "location_id": cls.stock_input.id,
                 "quantity": 60,
             }
         )
         cls.stock_quant1 = cls.env["stock.quant"].create(
             {
-                "product_id": cls.env.ref("product.product_delivery_02").id,
+                "product_id": cls.product_2.id,
                 "location_id": cls.stock_input.id,
                 "quantity": 50,
             }

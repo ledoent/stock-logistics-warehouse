@@ -12,6 +12,12 @@ class StockLocation(models.Model):
     )
 
     def _search_location_amount(self, operator, value):
+        if operator in ("in", "not in"):
+            values = list(value)
+            if len(values) != 1:
+                return []
+            operator = "=" if operator == "in" else "!="
+            value = values[0]
         if operator not in ("=", "!=", "<", "<=", ">", ">="):
             return []
         self.env.cr.execute(
