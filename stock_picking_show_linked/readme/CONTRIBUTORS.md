@@ -1,3 +1,4 @@
 - Juany Davila \<<juany.davila@forgeflow.com>\>
 - OERP Canada \<<https://www.oerp.ca/>\>
   - Foram Darji \<<fd@oerp.ca>\>
+- Don Kendall \<<dkendall@ledoweb.com>\>
